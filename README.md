@@ -1,0 +1,1 @@
+# updateimpact-plugin-common
