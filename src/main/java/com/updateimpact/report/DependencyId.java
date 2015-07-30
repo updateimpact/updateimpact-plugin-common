@@ -1,4 +1,4 @@
-package com.updateimpact;
+package com.updateimpact.report;
 
 public class DependencyId {
     private final String groupId;

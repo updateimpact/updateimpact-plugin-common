@@ -1,4 +1,4 @@
-package com.updateimpact;
+package com.updateimpact.report;
 
 public interface SubmitLogger {
     void info(String message);

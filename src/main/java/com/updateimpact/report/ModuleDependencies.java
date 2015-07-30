@@ -1,4 +1,4 @@
-package com.updateimpact;
+package com.updateimpact.report;
 
 import java.util.Collection;
 

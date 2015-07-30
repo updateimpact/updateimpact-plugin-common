@@ -1,4 +1,4 @@
-package com.updateimpact;
+package com.updateimpact.report;
 
 import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
@@ -21,7 +21,8 @@ public class ReportSubmitter {
         this.log = log;
     }
 
-    public String trySubmitReport(String report) throws RuntimeException {
+    public String trySubmitReport(DependencyReport dr) {
+        String report = new Gson().toJson(dr);
         try {
             return submitReport(report);
         } catch (IOException e) {
