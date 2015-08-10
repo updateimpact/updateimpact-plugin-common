@@ -26,12 +26,15 @@ public class Dependency {
 
         Dependency that = (Dependency) o;
 
-        return !(id != null ? !id.equals(that.id) : that.id != null);
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        return !(dependencies != null ? !dependencies.equals(that.dependencies) : that.dependencies != null);
 
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (dependencies != null ? dependencies.hashCode() : 0);
+        return result;
     }
 }

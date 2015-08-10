@@ -30,12 +30,18 @@ public class DependencyChild {
 
         DependencyChild that = (DependencyChild) o;
 
-        return !(id != null ? !id.equals(that.id) : that.id != null);
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (evictedByVersion != null ? !evictedByVersion.equals(that.evictedByVersion) : that.evictedByVersion != null)
+            return false;
+        return !(cycle != null ? !cycle.equals(that.cycle) : that.cycle != null);
 
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (evictedByVersion != null ? evictedByVersion.hashCode() : 0);
+        result = 31 * result + (cycle != null ? cycle.hashCode() : 0);
+        return result;
     }
 }
