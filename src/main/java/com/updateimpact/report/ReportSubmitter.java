@@ -3,6 +3,7 @@ package com.updateimpact.report;
 import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.GzipCompressingEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -36,7 +37,7 @@ public class ReportSubmitter {
         log.info("");
         log.info("Submitting dependency report to " + submitUrl);
         HttpPost post = new HttpPost(submitUrl);
-        post.setEntity(new StringEntity(report));
+        post.setEntity(new GzipCompressingEntity(new StringEntity(report)));
         HttpResponse response = HTTP_CLIENT.execute(post);
 
         String responseJson = EntityUtils.toString(response.getEntity());

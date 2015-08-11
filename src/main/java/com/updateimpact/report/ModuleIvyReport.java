@@ -5,24 +5,28 @@ import java.io.*;
 public class ModuleIvyReport {
     private final DependencyId moduleId;
     private final String config;
-    private final String compressedIvyReport;
+    private final String ivyReport;
 
-    public ModuleIvyReport(DependencyId moduleId, String config, String compressedIvyReport) {
+    public ModuleIvyReport(DependencyId moduleId, String config, String ivyReport) {
         this.moduleId = moduleId;
         this.config = config;
-        this.compressedIvyReport = compressedIvyReport;
+        this.ivyReport = ivyReport;
+    }
+
+    public DependencyId getModuleId() {
+        return moduleId;
     }
 
     public String getConfig() {
         return config;
     }
 
-    public String getCompressedIvyReport() {
-        return compressedIvyReport;
+    public String getIvyReport() {
+        return ivyReport;
     }
 
-    public static ModuleIvyReport newWithCompressedReport(DependencyId moduleId, String config, File report) throws IOException {
-        return new ModuleIvyReport(moduleId, config, ZIP.compress(readFile(report)));
+    public static ModuleIvyReport newWithReport(DependencyId moduleId, String config, File report) throws IOException {
+        return new ModuleIvyReport(moduleId, config, readFile(report));
     }
 
     private static String readFile(File f) throws IOException {
@@ -51,7 +55,7 @@ public class ModuleIvyReport {
 
         if (moduleId != null ? !moduleId.equals(that.moduleId) : that.moduleId != null) return false;
         if (config != null ? !config.equals(that.config) : that.config != null) return false;
-        return !(compressedIvyReport != null ? !compressedIvyReport.equals(that.compressedIvyReport) : that.compressedIvyReport != null);
+        return !(ivyReport != null ? !ivyReport.equals(that.ivyReport) : that.ivyReport != null);
 
     }
 
@@ -59,7 +63,7 @@ public class ModuleIvyReport {
     public int hashCode() {
         int result = moduleId != null ? moduleId.hashCode() : 0;
         result = 31 * result + (config != null ? config.hashCode() : 0);
-        result = 31 * result + (compressedIvyReport != null ? compressedIvyReport.hashCode() : 0);
+        result = 31 * result + (ivyReport != null ? ivyReport.hashCode() : 0);
         return result;
     }
 }
