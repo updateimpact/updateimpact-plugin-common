@@ -50,7 +50,7 @@ public class ReportSubmitter {
             return null;
         } else {
             SubmitResponse submitResponse = new Gson().fromJson(responseJson, SubmitResponse.class);
-            String viewLink = url + "/#/builds/" + submitResponse.getUserIdStr() + "/" + submitResponse.getBuildId();
+            String viewLink = url + "/builds/" + submitResponse.getUserIdStr() + "/" + submitResponse.getBuildId();
 
             log.info("");
             log.info("Dependency report submitted. You can view it at: ");
