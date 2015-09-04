@@ -60,4 +60,13 @@ public class DependencyId {
         result = 31 * result + (classifier != null ? classifier.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(groupId).append(":").append(artifactId).append(":").append(version);
+        if (type != null) sb.append(":").append(type);
+        if (classifier != null) sb.append(":").append(classifier);
+        return sb.toString();
+    }
 }
